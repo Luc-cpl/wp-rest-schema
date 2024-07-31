@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use WpRestSchema\Generator\Commands\GenerateCommand;
+
+define('GENERATOR_ROOT', __DIR__);
+
+$application = new Application(
+    name: 'WP Rest Schema Generator',
+);
+
+$application->add(new GenerateCommand());
+
+$application->run();
