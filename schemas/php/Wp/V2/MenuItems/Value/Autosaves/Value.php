@@ -1,0 +1,185 @@
+<?php
+
+namespace WpRestSchema\Schemas\Wp\V2\MenuItems\Value\Autosaves;
+
+class Value
+{
+    public static function getSchema()
+    {
+        return <<<'JSON'
+        {
+            "namespace": "wp\/v2",
+            "methods": [
+                "GET"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "parent": {
+                            "description": "The ID for the parent of the autosave.",
+                            "type": "integer",
+                            "required": false
+                        },
+                        "id": {
+                            "description": "The ID for the autosave.",
+                            "type": "integer",
+                            "required": false
+                        },
+                        "context": {
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string",
+                            "enum": [
+                                "view",
+                                "embed",
+                                "edit"
+                            ],
+                            "default": "view",
+                            "required": false
+                        }
+                    }
+                }
+            ],
+            "schema": {
+                "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+                "title": "nav_menu_item-revision",
+                "type": "object",
+                "properties": {
+                    "author": {
+                        "description": "The ID for the author of the revision.",
+                        "type": "integer",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "date": {
+                        "description": "The date the revision was published, in the site's timezone.",
+                        "type": "string",
+                        "format": "date-time",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "date_gmt": {
+                        "description": "The date the revision was published, as GMT.",
+                        "type": "string",
+                        "format": "date-time",
+                        "context": [
+                            "view",
+                            "edit"
+                        ]
+                    },
+                    "guid": {
+                        "description": "GUID for the revision, as it exists in the database.",
+                        "type": "string",
+                        "context": [
+                            "view",
+                            "edit"
+                        ]
+                    },
+                    "id": {
+                        "description": "Unique identifier for the revision.",
+                        "type": "integer",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "modified": {
+                        "description": "The date the revision was last modified, in the site's timezone.",
+                        "type": "string",
+                        "format": "date-time",
+                        "context": [
+                            "view",
+                            "edit"
+                        ]
+                    },
+                    "modified_gmt": {
+                        "description": "The date the revision was last modified, as GMT.",
+                        "type": "string",
+                        "format": "date-time",
+                        "context": [
+                            "view",
+                            "edit"
+                        ]
+                    },
+                    "parent": {
+                        "description": "The ID for the parent of the revision.",
+                        "type": "integer",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "slug": {
+                        "description": "An alphanumeric identifier for the revision unique to its type.",
+                        "type": "string",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "title": {
+                        "description": "The title for the object.",
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ],
+                        "properties": {
+                            "raw": {
+                                "description": "Title for the object, as it exists in the database.",
+                                "type": "string",
+                                "context": [
+                                    "edit"
+                                ]
+                            },
+                            "rendered": {
+                                "description": "HTML title for the object, transformed for display.",
+                                "type": "string",
+                                "context": [
+                                    "view",
+                                    "edit",
+                                    "embed"
+                                ],
+                                "readonly": true
+                            }
+                        }
+                    },
+                    "meta": {
+                        "description": "Meta fields.",
+                        "type": "object",
+                        "context": [
+                            "view",
+                            "edit"
+                        ],
+                        "properties": []
+                    },
+                    "preview_link": {
+                        "description": "Preview link for the post.",
+                        "type": "string",
+                        "format": "uri",
+                        "context": [
+                            "edit"
+                        ],
+                        "readonly": true
+                    }
+                }
+            }
+        }
+        JSON;
+    }
+}

@@ -1,0 +1,196 @@
+{
+    "namespace": "wp\/v2",
+    "methods": [
+        "GET",
+        "POST"
+    ],
+    "endpoints": [
+        {
+            "methods": [
+                "GET"
+            ],
+            "args": {
+                "context": {
+                    "description": "Scope under which the request is made; determines fields present in response.",
+                    "type": "string",
+                    "enum": [
+                        "view",
+                        "embed",
+                        "edit"
+                    ],
+                    "default": "view",
+                    "required": false
+                },
+                "page": {
+                    "description": "Current page of the collection.",
+                    "type": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "required": false
+                },
+                "per_page": {
+                    "description": "Maximum number of items to be returned in result set.",
+                    "type": "integer",
+                    "default": 10,
+                    "minimum": 1,
+                    "maximum": 100,
+                    "required": false
+                },
+                "exclude": {
+                    "description": "Ensure result set excludes specific IDs.",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "default": [],
+                    "required": false
+                },
+                "include": {
+                    "description": "Limit result set to specific IDs.",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "default": [],
+                    "required": false
+                },
+                "offset": {
+                    "description": "Offset the result set by a specific number of items.",
+                    "type": "integer",
+                    "required": false
+                },
+                "order": {
+                    "description": "Order sort attribute ascending or descending.",
+                    "type": "string",
+                    "default": "desc",
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ],
+                    "required": false
+                },
+                "orderby": {
+                    "description": "Sort collection by post attribute.",
+                    "type": "string",
+                    "default": "id",
+                    "enum": [
+                        "id",
+                        "include"
+                    ],
+                    "required": false
+                },
+                "slug": {
+                    "description": "Limit result set to posts with one or more specific slugs.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "required": false
+                }
+            }
+        },
+        {
+            "methods": [
+                "POST"
+            ],
+            "args": {
+                "theme_json_version": {
+                    "description": "Version of the theme.json schema used for the typography settings.",
+                    "type": "integer",
+                    "default": 3,
+                    "minimum": 2,
+                    "maximum": 3,
+                    "required": false
+                },
+                "font_family_settings": {
+                    "description": "font-family declaration in theme.json format, encoded as a string.",
+                    "type": "string",
+                    "required": true
+                }
+            }
+        }
+    ],
+    "schema": {
+        "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+        "title": "wp_font_family",
+        "type": "object",
+        "properties": {
+            "id": {
+                "description": "Unique identifier for the post.",
+                "type": "integer",
+                "context": [
+                    "view",
+                    "edit",
+                    "embed"
+                ],
+                "readonly": true
+            },
+            "theme_json_version": {
+                "description": "Version of the theme.json schema used for the typography settings.",
+                "type": "integer",
+                "default": 3,
+                "minimum": 2,
+                "maximum": 3,
+                "context": [
+                    "view",
+                    "edit",
+                    "embed"
+                ]
+            },
+            "font_faces": {
+                "description": "The IDs of the child font faces in the font family.",
+                "type": "array",
+                "context": [
+                    "view",
+                    "edit",
+                    "embed"
+                ],
+                "items": {
+                    "type": "integer"
+                }
+            },
+            "font_family_settings": {
+                "description": "font-face definition in theme.json format.",
+                "type": "object",
+                "context": [
+                    "view",
+                    "edit",
+                    "embed"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the font family preset, translatable.",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "description": "Kebab-case unique identifier for the font family preset.",
+                        "type": "string"
+                    },
+                    "fontFamily": {
+                        "description": "CSS font-family value.",
+                        "type": "string"
+                    },
+                    "preview": {
+                        "description": "URL to a preview image of the font family.",
+                        "type": "string",
+                        "format": "uri",
+                        "default": ""
+                    }
+                },
+                "required": [
+                    "name",
+                    "slug",
+                    "fontFamily"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+    "_links": {
+        "self": [
+            {
+                "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/font-families"
+            }
+        ]
+    }
+}

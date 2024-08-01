@@ -1,0 +1,168 @@
+<?php
+
+namespace WpRestSchema\Schemas\Wp\V2\FontFamilies;
+
+class Value
+{
+    public static function getSchema()
+    {
+        return <<<'JSON'
+        {
+            "namespace": "wp\/v2",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": {
+                        "id": {
+                            "description": "Unique identifier for the post.",
+                            "type": "integer",
+                            "required": false
+                        },
+                        "context": {
+                            "description": "Scope under which the request is made; determines fields present in response.",
+                            "type": "string",
+                            "enum": [
+                                "view",
+                                "embed",
+                                "edit"
+                            ],
+                            "default": "view",
+                            "required": false
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "POST",
+                        "PUT",
+                        "PATCH"
+                    ],
+                    "args": {
+                        "id": {
+                            "description": "Unique identifier for the post.",
+                            "type": "integer",
+                            "required": false
+                        },
+                        "theme_json_version": {
+                            "description": "Version of the theme.json schema used for the typography settings.",
+                            "type": "integer",
+                            "default": 3,
+                            "minimum": 2,
+                            "maximum": 3,
+                            "required": false
+                        },
+                        "font_family_settings": {
+                            "description": "font-family declaration in theme.json format, encoded as a string.",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                {
+                    "methods": [
+                        "DELETE"
+                    ],
+                    "args": {
+                        "id": {
+                            "description": "Unique identifier for the post.",
+                            "type": "integer",
+                            "required": false
+                        },
+                        "force": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Whether to bypass Trash and force deletion.",
+                            "required": false
+                        }
+                    }
+                }
+            ],
+            "schema": {
+                "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+                "title": "wp_font_family",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier for the post.",
+                        "type": "integer",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ],
+                        "readonly": true
+                    },
+                    "theme_json_version": {
+                        "description": "Version of the theme.json schema used for the typography settings.",
+                        "type": "integer",
+                        "default": 3,
+                        "minimum": 2,
+                        "maximum": 3,
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ]
+                    },
+                    "font_faces": {
+                        "description": "The IDs of the child font faces in the font family.",
+                        "type": "array",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ],
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "font_family_settings": {
+                        "description": "font-face definition in theme.json format.",
+                        "type": "object",
+                        "context": [
+                            "view",
+                            "edit",
+                            "embed"
+                        ],
+                        "properties": {
+                            "name": {
+                                "description": "Name of the font family preset, translatable.",
+                                "type": "string"
+                            },
+                            "slug": {
+                                "description": "Kebab-case unique identifier for the font family preset.",
+                                "type": "string"
+                            },
+                            "fontFamily": {
+                                "description": "CSS font-family value.",
+                                "type": "string"
+                            },
+                            "preview": {
+                                "description": "URL to a preview image of the font family.",
+                                "type": "string",
+                                "format": "uri",
+                                "default": ""
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "slug",
+                            "fontFamily"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            }
+        }
+        JSON;
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "namespace": "wp-block-editor\/v1",
+    "methods": [
+        "GET"
+    ],
+    "endpoints": [
+        {
+            "methods": [
+                "GET"
+            ],
+            "args": {
+                "url": {
+                    "description": "The URL to process.",
+                    "type": "string",
+                    "format": "uri",
+                    "required": true
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": [
+            {
+                "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-block-editor\/v1\/url-details"
+            }
+        ]
+    }
+}

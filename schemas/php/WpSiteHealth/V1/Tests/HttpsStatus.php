@@ -1,0 +1,93 @@
+<?php
+
+namespace WpRestSchema\Schemas\WpSiteHealth\V1\Tests;
+
+class HttpsStatus
+{
+    public static function getSchema()
+    {
+        return <<<'JSON'
+        {
+            "namespace": "wp-site-health\/v1",
+            "methods": [
+                "GET"
+            ],
+            "endpoints": [
+                {
+                    "methods": [
+                        "GET"
+                    ],
+                    "args": []
+                }
+            ],
+            "schema": {
+                "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+                "title": "wp-site-health-test",
+                "type": "object",
+                "properties": {
+                    "test": {
+                        "type": "string",
+                        "description": "The name of the test being run.",
+                        "readonly": true
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "A label describing the test.",
+                        "readonly": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the test.",
+                        "enum": [
+                            "good",
+                            "recommended",
+                            "critical"
+                        ],
+                        "readonly": true
+                    },
+                    "badge": {
+                        "type": "object",
+                        "description": "The category this test is grouped in.",
+                        "properties": {
+                            "label": {
+                                "type": "string",
+                                "readonly": true
+                            },
+                            "color": {
+                                "type": "string",
+                                "enum": [
+                                    "blue",
+                                    "orange",
+                                    "red",
+                                    "green",
+                                    "purple",
+                                    "gray"
+                                ],
+                                "readonly": true
+                            }
+                        },
+                        "readonly": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A more descriptive explanation of what the test looks for, and why it is important for the user.",
+                        "readonly": true
+                    },
+                    "actions": {
+                        "type": "string",
+                        "description": "HTML containing an action to direct the user to where they can resolve the issue.",
+                        "readonly": true
+                    }
+                }
+            },
+            "_links": {
+                "self": [
+                    {
+                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/https-status"
+                    }
+                ]
+            }
+        }
+        JSON;
+    }
+}

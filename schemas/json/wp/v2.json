@@ -1,0 +1,30 @@
+{
+    "namespace": "wp\/v2",
+    "methods": [
+        "GET"
+    ],
+    "endpoints": [
+        {
+            "methods": [
+                "GET"
+            ],
+            "args": {
+                "namespace": {
+                    "default": "wp\/v2",
+                    "required": false
+                },
+                "context": {
+                    "default": "view",
+                    "required": false
+                }
+            }
+        }
+    ],
+    "_links": {
+        "self": [
+            {
+                "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2"
+            }
+        ]
+    }
+}
