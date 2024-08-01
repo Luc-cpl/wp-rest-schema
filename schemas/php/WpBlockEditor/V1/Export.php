@@ -23,7 +23,7 @@ class Export
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-block-editor\/v1\/export"
+                        "href": "http:\/\/localhost\/wp-json\/wp-block-editor\/v1\/export"
                     }
                 ]
             }

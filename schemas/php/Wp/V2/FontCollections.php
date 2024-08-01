@@ -103,7 +103,7 @@ class FontCollections
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/font-collections"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/font-collections"
                     }
                 ]
             }

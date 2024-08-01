@@ -83,7 +83,7 @@ class AuthorizationHeader
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/authorization-header"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/tests\/authorization-header"
                     }
                 ]
             }

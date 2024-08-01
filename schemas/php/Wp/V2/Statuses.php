@@ -113,7 +113,7 @@ class Statuses
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/statuses"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/statuses"
                     }
                 ]
             }

@@ -787,7 +787,7 @@ class Pages
                     {
                         "rel": "https:\/\/api.w.org\/action-publish",
                         "title": "The current user can publish this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/pages\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/pages\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -804,7 +804,7 @@ class Pages
                     {
                         "rel": "https:\/\/api.w.org\/action-unfiltered-html",
                         "title": "The current user can post unfiltered HTML markup and JavaScript.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/pages\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/pages\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -819,7 +819,7 @@ class Pages
                     {
                         "rel": "https:\/\/api.w.org\/action-assign-author",
                         "title": "The current user can change the author on this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/pages\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/pages\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -834,7 +834,7 @@ class Pages
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/pages"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/pages"
                     }
                 ]
             }

@@ -28,7 +28,7 @@ class Index
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/"
+                        "href": "http:\/\/localhost\/wp-json\/"
                     }
                 ]
             }

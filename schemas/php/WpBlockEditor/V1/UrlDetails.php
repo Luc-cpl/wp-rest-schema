@@ -30,7 +30,7 @@ class UrlDetails
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-block-editor\/v1\/url-details"
+                        "href": "http:\/\/localhost\/wp-json\/wp-block-editor\/v1\/url-details"
                     }
                 ]
             }

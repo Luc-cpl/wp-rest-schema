@@ -245,7 +245,7 @@ class WpPatternCategory
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/wp_pattern_category"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/wp_pattern_category"
                     }
                 ]
             }

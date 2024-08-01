@@ -216,7 +216,7 @@ class Plugins
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/plugins"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/plugins"
                     }
                 ]
             }

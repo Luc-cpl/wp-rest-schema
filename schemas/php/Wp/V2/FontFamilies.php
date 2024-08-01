@@ -198,7 +198,7 @@ class FontFamilies
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/font-families"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/font-families"
                     }
                 ]
             }

@@ -72,7 +72,7 @@ class MenuLocations
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/menu-locations"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/menu-locations"
                     }
                 ]
             }

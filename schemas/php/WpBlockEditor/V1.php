@@ -32,7 +32,7 @@ class V1
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-block-editor\/v1"
+                        "href": "http:\/\/localhost\/wp-json\/wp-block-editor\/v1"
                     }
                 ]
             }

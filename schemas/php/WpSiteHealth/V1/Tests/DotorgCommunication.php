@@ -83,7 +83,7 @@ class DotorgCommunication
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/dotorg-communication"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/tests\/dotorg-communication"
                     }
                 ]
             }

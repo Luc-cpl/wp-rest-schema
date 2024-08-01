@@ -23,7 +23,7 @@ class DirectorySizes
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/directory-sizes"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/directory-sizes"
                     }
                 ]
             }

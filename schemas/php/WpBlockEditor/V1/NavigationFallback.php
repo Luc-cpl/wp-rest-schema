@@ -40,7 +40,7 @@ class NavigationFallback
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-block-editor\/v1\/navigation-fallback"
+                        "href": "http:\/\/localhost\/wp-json\/wp-block-editor\/v1\/navigation-fallback"
                     }
                 ]
             }

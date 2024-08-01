@@ -166,7 +166,7 @@ class Search
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/search"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/search"
                     }
                 ]
             }

@@ -75,7 +75,7 @@ class V1
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/batch\/v1"
+                        "href": "http:\/\/localhost\/wp-json\/batch\/v1"
                     }
                 ]
             }

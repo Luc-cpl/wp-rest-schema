@@ -565,7 +565,7 @@ class Themes
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/themes"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/themes"
                     }
                 ]
             }

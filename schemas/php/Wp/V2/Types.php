@@ -218,7 +218,7 @@ class Types
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/types"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/types"
                     }
                 ]
             }

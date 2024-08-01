@@ -83,7 +83,7 @@ class LoopbackRequests
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/loopback-requests"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/tests\/loopback-requests"
                     }
                 ]
             }

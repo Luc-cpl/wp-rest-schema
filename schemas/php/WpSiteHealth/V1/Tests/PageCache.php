@@ -23,7 +23,7 @@ class PageCache
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/page-cache"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/tests\/page-cache"
                     }
                 ]
             }

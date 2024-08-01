@@ -83,7 +83,7 @@ class BackgroundUpdates
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp-site-health\/v1\/tests\/background-updates"
+                        "href": "http:\/\/localhost\/wp-json\/wp-site-health\/v1\/tests\/background-updates"
                     }
                 ]
             }

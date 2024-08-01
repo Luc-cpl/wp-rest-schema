@@ -1003,7 +1003,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-publish",
                         "title": "The current user can publish this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1020,7 +1020,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-unfiltered-html",
                         "title": "The current user can post unfiltered HTML markup and JavaScript.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1035,7 +1035,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-sticky",
                         "title": "The current user can sticky this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1048,7 +1048,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-assign-author",
                         "title": "The current user can change the author on this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1061,7 +1061,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-assign-categories",
                         "title": "The current user can assign terms in the category taxonomy.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1077,7 +1077,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-create-categories",
                         "title": "The current user can create terms in the category taxonomy.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1093,7 +1093,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-assign-tags",
                         "title": "The current user can assign terms in the post_tag taxonomy.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1109,7 +1109,7 @@ class Posts
                     {
                         "rel": "https:\/\/api.w.org\/action-create-tags",
                         "title": "The current user can create terms in the post_tag taxonomy.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -1127,7 +1127,7 @@ class Posts
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/posts"
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/posts"
                     }
                 ]
             }

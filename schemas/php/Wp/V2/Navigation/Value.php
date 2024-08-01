@@ -432,7 +432,7 @@ class Value
                     {
                         "rel": "https:\/\/api.w.org\/action-publish",
                         "title": "The current user can publish this post.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/navigation\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/navigation\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {
@@ -449,7 +449,7 @@ class Value
                     {
                         "rel": "https:\/\/api.w.org\/action-unfiltered-html",
                         "title": "The current user can post unfiltered HTML markup and JavaScript.",
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/wp\/v2\/navigation\/{id}",
+                        "href": "http:\/\/localhost\/wp-json\/wp\/v2\/navigation\/{id}",
                         "targetSchema": {
                             "type": "object",
                             "properties": {

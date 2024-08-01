@@ -38,7 +38,7 @@ class Embed
             "_links": {
                 "self": [
                     {
-                        "href": "https:\/\/wp-ultimo.localhost\/wp-json\/oembed\/1.0\/embed"
+                        "href": "http:\/\/localhost\/wp-json\/oembed\/1.0\/embed"
                     }
                 ]
             }
