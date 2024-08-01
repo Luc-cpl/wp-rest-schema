@@ -1,6 +1,6 @@
 <?php
 
-namespace WpRestSchema\Generator\Commands;
+namespace WpRestSchema\Commands;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -42,15 +42,57 @@ class GenerateCommand extends Command
                 continue;
             }
 
-            $path = preg_replace('/\(([^()]*(?:\([^()]*\)[^()]*)*)\)/', '_value', $originalRoute);
-            $file = GENERATOR_ROOT . '/schemas/json' . $path . '.json';
-            if (!file_exists(dirname($file))) {
-                mkdir(dirname($file), 0777, true);
-            }
+            $path = preg_replace('/\(([^()]*(?:\([^()]*\)[^()]*)*)\)/', 'value', $originalRoute);
+            $path = $path === '/' ? '/index' : $path;
+            $content = json_encode($routeOptions, JSON_PRETTY_PRINT);
 
-            file_put_contents($file, json_encode($routeOptions, JSON_PRETTY_PRINT));
+            $file = GENERATOR_ROOT . '/schemas/json' . $path . '.json';
+            $this->createFile($file, $content);
+
+            $file = GENERATOR_ROOT . '/schemas/php' . $this->getCamelPath($path) . '.php';
+            $this->createFile($file, $this->getClassContent($path, $content));
         }
 
         return Command::SUCCESS;
+    }
+
+    private function createFile(string $file, string $content)
+    {
+        if (!file_exists(dirname($file))) {
+            mkdir(dirname($file), 0777, true);
+        }
+
+        file_put_contents($file, $content);
+    }
+
+    private function getClassContent(string $path, string $content): string
+    {
+        $content = implode("\n", array_map(function ($line) {
+            return '        ' . $line;
+        }, explode("\n", $content)));
+        $camelPath = $this->getCamelPath($path);
+        $phpContent = '<?php' . PHP_EOL;
+        $phpContent .= PHP_EOL;
+        $phpContent .= 'namespace WpRestSchema\Schemas' . trim(str_replace('/', '\\', dirname($camelPath)), '\\') . ';' . PHP_EOL;
+        $phpContent .= PHP_EOL;
+        $phpContent .= 'class ' . basename($camelPath) . PHP_EOL;
+        $phpContent .= '{' . PHP_EOL;
+        $phpContent .= '    public static function getSchema()' . PHP_EOL;
+        $phpContent .= '    {' . PHP_EOL;
+        $phpContent .= '        return <<<\'JSON\'' . PHP_EOL;
+        $phpContent .= $content . PHP_EOL;
+        $phpContent .= '        JSON;' . PHP_EOL;
+        $phpContent .= '    }' . PHP_EOL;
+        $phpContent .= '}' . PHP_EOL;
+
+        return $phpContent;
+    }
+
+    private function getCamelPath(string $path): string
+    {
+        $camelPath = str_replace('/', '/', ucwords($path, '/'));
+        $camelPath = str_replace('-', '', ucwords($camelPath, '-'));
+        $camelPath = str_replace('_', '', ucwords($camelPath, '_'));
+        return $camelPath;
     }
 }

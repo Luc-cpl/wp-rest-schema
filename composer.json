@@ -1,10 +1,12 @@
 {
     "name": "luccpl/wp-rest-schema",
+    "version": "0.0.1",
+    "description": "A simple package with all WP core REST API json-schemas",
     "type": "package",
     "autoload": {
         "psr-4": {
             "WpRestSchema\\Schema\\": "schemas/php",
-            "WpRestSchema\\Generator\\": "src/"
+            "WpRestSchema\\": "src/"
         }
     },
     "authors": [

@@ -4,7 +4,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use WpRestSchema\Generator\Commands\GenerateCommand;
+use WpRestSchema\Commands\GenerateCommand;
 
 define('GENERATOR_ROOT', __DIR__);
 
