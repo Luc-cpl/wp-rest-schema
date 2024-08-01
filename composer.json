@@ -5,7 +5,7 @@
     "type": "package",
     "autoload": {
         "psr-4": {
-            "WpRestSchema\\Schema\\": "schemas/php",
+            "WpRestSchema\\Schemas\\": "schemas/php",
             "WpRestSchema\\": "src/"
         }
     },

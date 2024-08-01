@@ -12,26 +12,45 @@ use GuzzleHttp\Client;
 #[AsCommand(name: 'generate', description: 'Generate the schema for the WordPress REST API')]
 class GenerateCommand extends Command
 {
+    private string $namespace;
+
     protected function configure(): void
     {
         $this->addArgument('site-url', InputArgument::REQUIRED, 'The URL of the WordPress site to generate the schema for');
+        $this->addArgument(
+            'namespace',
+            InputArgument::OPTIONAL,
+            'The base namespace for the generated classes',
+            'WpRestSchema\\Schemas'
+        );
     }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Generating schema...');
-
         $siteUrl = $input->getArgument('site-url');
-
+        $this->namespace = $input->getArgument('namespace');
         $output->writeln('Site URL: ' . $siteUrl);
+        $output->writeln('Namespace: ' . $this->namespace);
+        $output->writeln('Fetching schema...');
 
-        // use guzzle to fetch the site wp-json schema
         $client = new Client();
         $response = $client->get($siteUrl . '/wp-json', [
             'verify' => false
         ]);
 
+        if ($response->getStatusCode() !== 200) {
+            $output->writeln('Failed to fetch schema');
+            return Command::FAILURE;
+        }
+
+        $output->writeln('Schema fetched');
+        $output->writeln('Generating schema files...');
+
+        /** @var array<string,{file:string,class:string}> */
+        $routes = [];
         $routeSchema = json_decode($response->getBody(), true);
-        foreach (array_keys($routeSchema['routes']) as $originalRoute) {
+        foreach (array_keys($routeSchema['routes']) as $key => $originalRoute) {
             $route = preg_replace('/\(([^()]*(?:\([^()]*\)[^()]*)*)\)/', '1', $originalRoute);
             $response = $client->options($siteUrl . '/wp-json' . $route, [
                 'verify' => false
@@ -46,12 +65,39 @@ class GenerateCommand extends Command
             $path = $path === '/' ? '/index' : $path;
             $content = json_encode($routeOptions, JSON_PRETTY_PRINT);
 
-            $file = GENERATOR_ROOT . '/schemas/json' . $path . '.json';
-            $this->createFile($file, $content);
+            $jsonFile = GENERATOR_ROOT . '/schemas/json' . $path . '.json';
+            $this->createFile($jsonFile, $content);
 
             $file = GENERATOR_ROOT . '/schemas/php' . $this->getCamelPath($path) . '.php';
             $this->createFile($file, $this->getClassContent($path, $content));
+
+            $routes[$originalRoute] = [
+                'json' => $jsonFile,
+                'class' => trim($this->namespace . str_replace('/', '\\', $this->getCamelPath($path)), '\\')
+            ];
+
+            // Output the percentage of completion
+            $total = count($routeSchema['routes']);
+            $percentage = round(($key + 1) / $total * 100);
+            $output->write("\r" . $percentage . '%');
         }
+
+        $output->writeln("\rCompleted");
+
+        $output->writeln('Generating routes file...');
+
+        $file = GENERATOR_ROOT . '/schemas/php/Routes.php';
+        $content = '<?php' . PHP_EOL . PHP_EOL;
+        $content .= 'namespace ' . $this->namespace . ';' . PHP_EOL . PHP_EOL;
+        $content .= 'class Routes' . PHP_EOL;
+        $content .= '{' . PHP_EOL;
+        $content .= '    public static function getRoutes()' . PHP_EOL;
+        $content .= '    {' . PHP_EOL;
+        $content .= '        return ' . var_export($routes, true) . ';' . PHP_EOL;
+        $content .= '    }' . PHP_EOL;
+        $content .= '}' . PHP_EOL;
+
+        $this->createFile($file, $content);
 
         return Command::SUCCESS;
     }
@@ -73,7 +119,7 @@ class GenerateCommand extends Command
         $camelPath = $this->getCamelPath($path);
         $phpContent = '<?php' . PHP_EOL;
         $phpContent .= PHP_EOL;
-        $phpContent .= 'namespace WpRestSchema\Schemas' . trim(str_replace('/', '\\', dirname($camelPath)), '\\') . ';' . PHP_EOL;
+        $phpContent .= 'namespace ' . trim($this->namespace . str_replace('/', '\\', dirname($camelPath)), '\\') . ';' . PHP_EOL;
         $phpContent .= PHP_EOL;
         $phpContent .= 'class ' . basename($camelPath) . PHP_EOL;
         $phpContent .= '{' . PHP_EOL;
