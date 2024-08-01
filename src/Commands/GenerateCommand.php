@@ -72,7 +72,7 @@ class GenerateCommand extends Command
             $this->createFile($file, $this->getClassContent($path, $content));
 
             $routes[$originalRoute] = [
-                'json' => $jsonFile,
+                'json' => str_replace(GENERATOR_ROOT . '/', '', $jsonFile),
                 'class' => trim($this->namespace . str_replace('/', '\\', $this->getCamelPath($path)), '\\')
             ];
 
