@@ -2,9 +2,16 @@
 
 namespace WpRestSchema\Schemas;
 
-class Routes
+use WpRestSchema\Interfaces\SchemaInterface;
+
+class Routes implements \WpRestSchema\Interfaces\RoutesInterface
 {
-    public static function getRoutes()
+    /**
+     * Get the routes.
+     *
+     * @return array<string,array{json: string, class: SchemaInterface}>
+     */
+    public function getRoutes(): array
     {
         return array (
   '/' => 

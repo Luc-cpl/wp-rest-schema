@@ -89,9 +89,9 @@ class GenerateCommand extends Command
         $file = GENERATOR_ROOT . '/schemas/php/Routes.php';
         $content = '<?php' . PHP_EOL . PHP_EOL;
         $content .= 'namespace ' . $this->namespace . ';' . PHP_EOL . PHP_EOL;
-        $content .= 'class Routes' . PHP_EOL;
+        $content .= 'class Routes implements \WpRestSchema\Interfaces\RoutesInterface' . PHP_EOL;
         $content .= '{' . PHP_EOL;
-        $content .= '    public static function getRoutes()' . PHP_EOL;
+        $content .= '    public function getRoutes()' . PHP_EOL;
         $content .= '    {' . PHP_EOL;
         $content .= '        return ' . var_export($routes, true) . ';' . PHP_EOL;
         $content .= '    }' . PHP_EOL;

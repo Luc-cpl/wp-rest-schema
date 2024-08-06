@@ -2,7 +2,7 @@
 
 namespace WpRestSchema\Schemas\Oembed;
 
-class 1.0
+class 1_0
 {
     public static function getSchema()
     {
