@@ -2,20 +2,19 @@
 
 namespace WpRestSchema;
 
-use WpRestSchema\Schemas\Routes;
+use WpRestSchema\Interfaces\RouterInterface;
 use Swaggest\JsonSchema\Context;
 use Swaggest\JsonSchema\InvalidValue;
 use Swaggest\JsonSchema\Schema;
-use WpRestSchema\Interfaces\RoutesInterface;
 use InvalidArgumentException;
 
 class Validator
 {
     public function __construct(
-        private ?RoutesInterface $routes = null,
+        private ?RouterInterface $router = null,
     ) {
-        if ($this->routes === null) {
-            $this->routes = new Routes();
+        if ($this->router === null) {
+            $this->router = new Router();
         }
     }
 
@@ -28,9 +27,8 @@ class Validator
     public function validate(string $method, string $path, array $data): void
     {
         $path = '/' . trim($path, '/');
-        $route = $this->getWPRoute($path);
+        $route = $this->router->parse($path);
         $data = array_merge($data, $route['params'] ?? []);
-
         $baseSchema = json_decode($route['schema']);
 
         $allowedMethods = $baseSchema->methods;
@@ -61,45 +59,6 @@ class Validator
 
         $this->fixEmptyObjects($data, $endpoint);
         $schema->in((object) $data);
-    }
-
-    /**
-     * Get the route for the given path
-     *
-     * @param string $path
-     * @return array{schema:string,params?:string[]|int[]}
-     */
-    private function getWPRoute(string $path): array
-    {
-        $routes = $this->routes->getRoutes();
-        
-        if (isset($routes[$path])) {
-            return ['schema' => $routes[$path]['class']::getSchema()];
-        }
-
-        foreach ($routes as $route => $schemas) {
-            $params = $this->matchWPRoute($route, $path);
-            if ($params !== false) {
-                return ['schema' => $schemas['class']::getSchema(), 'params' => $params];
-            }
-        }
-
-        throw new InvalidArgumentException('No route found for: ' . $path);
-    }
-
-    private function matchWPRoute($route, $path) {
-        // Convert the route definition into a regular expression
-        $regex = preg_replace('/\(\?P<(\w+)>/', '(?P<\1>', $route);
-        $regex = str_replace('/', '\/', $regex);
-        $regex = '/^' . $regex . '$/';
-    
-        if (preg_match($regex, $path, $matches)) {
-            $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
-            $params = array_map(fn($param) => is_numeric($param) ? (int) $param : $param, $params);
-            return $params;
-        }
-
-        return false;
     }
 
     private function fixRequiredValues(object &$schema): void
