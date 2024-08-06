@@ -46,6 +46,7 @@ class Router implements RouterInterface
         // Convert the route definition into a regular expression
         $regex = preg_replace('/\(\?P<(\w+)>/', '(?P<\1>', $route);
         $regex = str_replace('/', '\/', $regex);
+        $regex = str_replace('\\\/', '\/', $regex);
         $regex = '/^' . $regex . '$/';
     
         if (preg_match($regex, $path, $matches)) {
