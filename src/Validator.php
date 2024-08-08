@@ -54,11 +54,29 @@ class Validator
         $options = new Context();
         $options->version = Schema::VERSION_DRAFT_04;
 
+        $this->clearSchema($endpoint, $data);
         $this->fixRequiredValues($endpoint);
         $schema = Schema::import($endpoint, $options);
 
         $this->fixEmptyObjects($data, $endpoint);
         $schema->in((object) $data);
+    }
+
+    private function clearSchema(object &$schema, array &$data): void
+    {
+        $propertiesArray = (array) $schema->properties;
+        foreach ($propertiesArray as $key => &$property) {
+            if (!array_key_exists($key, $data) && (!property_exists($property, 'required') || !$property->required)) {
+                unset($propertiesArray[$key]);
+                continue;
+            }
+
+            if (property_exists($property, 'properties')) {
+                $this->clearSchema($property, $data[$key]);
+            }
+        }
+
+        $schema->properties = (object) $propertiesArray;
     }
 
     private function fixRequiredValues(object &$schema): void
